@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace LeetCode_CSharp_DotNetCore
 {
@@ -25,8 +26,20 @@ namespace LeetCode_CSharp_DotNetCore
         // Given a roman numeral, convert it to an integer.
         public int RomanToInt(string s)
         {
+            // set result and length for return and itteration
+            int result = 0;
+            int length = s.Length;
+            IDictionary<int, string> romanNum = new Dictionary<int, string>();
 
-            return 0;
+            romanNum.Add(1, "I");
+            romanNum.Add(5 , "V");
+            romanNum.Add(10, "X");
+            romanNum.Add(50, "L");
+            romanNum.Add(100, "C");
+            romanNum.Add(500, "D");
+            romanNum.Add(1000, "M");
+
+            return result;
         }
         static void Main(string[] args)
         {
