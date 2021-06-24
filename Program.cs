@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace LeetCode_CSharp_DotNetCore
 {
-    class Program
+    internal class Program
     {
         //6.23 LeetCode
         // Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
@@ -20,30 +19,41 @@ namespace LeetCode_CSharp_DotNetCore
 
         // Roman numerals are usually written largest to smallest from left to right. However, the numeral for four is not IIII. Instead, the number four is written as IV. Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as IX. There are six instances where subtraction is used:
 
-        // I can be placed before V (5) and X (10) to make 4 and 9. 
-        // X can be placed before L (50) and C (100) to make 40 and 90. 
+        // I can be placed before V (5) and X (10) to make 4 and 9.
+        // X can be placed before L (50) and C (100) to make 40 and 90.
         // C can be placed before D (500) and M (1000) to make 400 and 900.
         // Given a roman numeral, convert it to an integer.
+
+        private static Dictionary<char, int> RomanMap = new Dictionary<char, int>()
+        {
+            {'I', 1},
+            {'V', 5},
+            {'X', 10},
+            {'L', 50},
+            {'C', 100},
+            {'D', 500},
+            {'M', 1000}
+        };
+
         public int RomanToInt(string s)
         {
-            // set result and length for return and itteration
             int result = 0;
-            int length = s.Length;
-            IDictionary<int, string> romanNum = new Dictionary<int, string>();
-
-            romanNum.Add(1, "I");
-            romanNum.Add(5 , "V");
-            romanNum.Add(10, "X");
-            romanNum.Add(50, "L");
-            romanNum.Add(100, "C");
-            romanNum.Add(500, "D");
-            romanNum.Add(1000, "M");
-
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (i + 1 < s.Length && RomanMap[s[i]] < RomanMap[s[i + 1]])
+                {
+                    result -= RomanMap[s[i]];
+                }
+                else
+                {
+                    result += RomanMap[s[i]];
+                }
+            }
             return result;
         }
-        static void Main(string[] args)
+
+        private static void Main(string[] args)
         {
-            
         }
     }
 }
