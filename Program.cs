@@ -4,7 +4,7 @@ namespace LeetCode_CSharp_DotNetCore
 {
     internal class Program
     {
-        // 6.28 Valid Parentheses 
+        // 6.28 Valid Parentheses
 
         // Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
 
@@ -12,7 +12,6 @@ namespace LeetCode_CSharp_DotNetCore
 
         // Open brackets must be closed by the same type of brackets.
         // Open brackets must be closed in the correct order.
-
 
         // Example 1:
 
@@ -35,7 +34,6 @@ namespace LeetCode_CSharp_DotNetCore
         // Input: s = "{[]}"
         // Output: true
 
-
         // Constraints:
 
         // 1 <= s.length <= 104
@@ -43,11 +41,42 @@ namespace LeetCode_CSharp_DotNetCore
 
         public bool IsValid(string s)
         {
+            Stack<char> endings = new Stack<char>(); // create a stack to hold reference
 
+            foreach (var x in s) x zx 
+            {
+                switch (x)
+                {
+                    case '(':
+                        endings.Push(')');
+                        break;
+
+                    case '[':
+                        endings.Push(']');
+                        break;
+
+                    case '{':
+                        endings.Push('}');
+                        break;
+
+                    case ')':
+                    case ']':
+                    case '}':
+                        if (endings.Count == 0 || endings.Pop() != x)
+                            return false;
+                        break;
+                }
+            }
+            return endings.Count == 0;
         }
 
         private static void Main(string[] args)
         {
+        isValid("()") // true
+        isValid("()[]{}") // true
+        isValid("(]") // false 
+        isValid("([)]") // false 
+        isValid("{[]}") // true
         }
     }
 }
