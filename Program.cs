@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Linq;
 
 namespace LeetCode_CSharp_DotNetCore
 {
@@ -14,15 +15,24 @@ namespace LeetCode_CSharp_DotNetCore
         // Kata.HighAndLow("1 9 3 4 -5"); // return "9 -5"
 
 
+        public static string HighAndLow(string numbers)
+        {
+            int[] intArray = numbers.Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+            string high = intArray.Max().ToString();
+            string low = intArray.Min().ToString();
+            return $"{high} {low}";
+        }
 
-  public static string HighAndLow(string numbers)
-  {
-    // Code here or
-    return "throw towel";
-  } 
+        // another way from codewars
+        //public static string HighAndLow(string numbers)
+        //{
+        //    var parsed = numbers.Split().Select(int.Parse);
+        //    return parsed.Max() + " " + parsed.Min();
+        //}
 
         private static void Main(string[] args)
         {
+            HighAndLow("1 2 3 4 5");
             
         }
     }
